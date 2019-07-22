@@ -65,8 +65,8 @@ exit /b`
 	timeout 1 >NUL
 	goto MENU
 
-:DEFAULT
 :: TTL set to 128 (default value) & back to menu
+:DEFAULT
 	netsh int ipv4 set glob defaultcurhoplimit=128 >NUL
 	netsh int ipv6 set glob defaultcurhoplimit=128 >NUL
 	echo Sucess!
