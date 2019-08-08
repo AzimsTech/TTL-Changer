@@ -9,4 +9,4 @@ Time to Live (TTL) represents to number of 'hops' a packet can take before it is
 
 ## Why Change this value at all?
 
-Some ISP prohibit 'tethering' your phone to another device. By changing TTL value to 65, the carriers must think you're using the phone, not the device it's tethered to.
+Some ISP prohibit 'tethering' your phone to another device. By changing TTL value to 60, the carriers must think you're using the phone, not the device it's tethered to.
