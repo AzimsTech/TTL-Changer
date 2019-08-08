@@ -9,7 +9,7 @@ call :CHECKADMIN
     goto :MENU
  ) else (
     echo Requesting administrative privileges...
-    timeout 2
+    timeout 1
     goto :UACPROMPT
  )
  exit /b
@@ -31,7 +31,7 @@ exit /b`
 :MENU
 	CLS
 	:: Get current TTL value from localhost
-	for /f "tokens=6" %%i in ('ping -n 1 localhost^|find "TTL"') do set ttl="%%i"
+	for /f "tokens=6" %%i in ('ping -n 1 127.0.0.1^|find "TTL"') do set ttl="%%i"
 	set ttl=%ttl:"=%
 	echo.
 
@@ -40,7 +40,7 @@ exit /b`
 	echo Current %ttl%
 	echo --------------------------------------------------------------
 	echo.
-	echo [1] 65 (bypass)
+	echo [1] 60 (bypass)
 	echo [2] 128 (default)
 	echo [3] Exit
 	echo.
@@ -59,8 +59,8 @@ exit /b`
 
 :: TTL set to 65 (bypass) & back to menu
 :BYPASS
-	netsh int ipv4 set glob defaultcurhoplimit=65 >NUL
-	netsh int ipv6 set glob defaultcurhoplimit=65 >NUL
+	netsh int ipv4 set glob defaultcurhoplimit=60 >NUL
+	netsh int ipv6 set glob defaultcurhoplimit=60 >NUL
 	echo Sucess! 
 	timeout 1 >NUL
 	goto MENU
