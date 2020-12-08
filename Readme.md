@@ -10,3 +10,6 @@ Time to Live (TTL) represents to number of 'hops' a packet can take before it is
 ## Why Change this value at all?
 
 Some ISP prohibit 'tethering' your phone to another device. By changing TTL value to 60, the carriers must think you're using the phone, not the device it's tethered to.
+
+# Research
+- [Possible ways of detecting hotspot](https://android.stackexchange.com/questions/47819/how-can-phone-companies-detect-tethering-incl-wifi-hotspot)
