@@ -3,29 +3,12 @@ title TTL Changer 1.2 - AzimsTech
 color 1f
 
 :: Check if it running as administator. If not, then prompt an administator request
-call :CHECKADMIN
-
- if %errorlevel% == 0 (
-    goto :MENU
- ) else (
-    echo Requesting administrative privileges...
-    timeout 1
-    goto :UACPROMPT
- )
- exit /b
-
-:CHECKADMIN
-    fsutil dirty query %systemdrive% >nul
- exit /b
-
-:: Prompt an administator request
-:UACPROMPT
-   echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-   echo UAC.ShellExecute "cmd.exe", "/c %~s0 %~1", "", "runas", 1 >> "%temp%\getadmin.vbs"
-
-   "%temp%\getadmin.vbs"
-   del "%temp%\getadmin.vbs"
-exit /b`
+if not "%1"=="am_admin" (
+    TIMEOUT 2 > NUL
+    @ECHO :: Requesting administator access...
+    powershell -Command "Start-Process -Verb RunAs -FilePath '%0' -ArgumentList 'am_admin'"
+    exit /b
+)
 
 
 :MENU
