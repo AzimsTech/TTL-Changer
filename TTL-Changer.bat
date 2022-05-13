@@ -1,5 +1,5 @@
 @echo off
-title TTL Changer 1.2 - AzimsTech
+title TTL Changer 1.3 - AzimsTech
 color 1f
 
 :: Check if it running as administator. If not, then prompt an administator request
