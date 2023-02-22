@@ -54,15 +54,20 @@ if not "%1"=="am_admin" (
 :BYPASS
 	netsh int ipv4 set glob defaultcurhoplimit=60 >NUL
 	netsh int ipv6 set glob defaultcurhoplimit=60 >NUL
+	:: prefer ipv4 over ipv6 https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-ipv6-in-windows
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters" /v DisabledComponents /t REG_DWORD /d 32 /f
-	echo Sucess! 
-	timeout 1 >NUL
+	echo.
+	echo Restart now for best results.
+	timeout 2 >NUL
 	goto MENU
 
 :: TTL set to 128 (default value) & back to menu
 :DEFAULT
 	netsh int ipv4 set glob defaultcurhoplimit=128 >NUL
 	netsh int ipv6 set glob defaultcurhoplimit=128 >NUL
-	echo Sucess!
-	timeout 1 >NUL
+	:: revert prefer ipv4 over ipv6 https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-ipv6-in-windows
+	reg delete "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters" /v DisabledComponents /f
+	echo.
+	echo Restart now for best results.
+	timeout 2 >NUL
 	goto MENU
