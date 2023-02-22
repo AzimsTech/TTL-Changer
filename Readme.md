@@ -1,5 +1,5 @@
 # TTL Changer
-**Download Here**: [![](https://img.shields.io/github/downloads/AzimsTech/TTL-Changer/1.3.1/TTL-Changer.bat.svg)](https://github.com/AzimsTech/TTL-Changer/releases/download/1.3.1/TTL-Changer.bat)
+**Download Here**: [![](https://img.shields.io/github/downloads/AzimsTech/TTL-Changer/1.4/TTL-Changer.bat.svg)](https://github.com/AzimsTech/TTL-Changer/releases/download/1.4/TTL-Changer_1.4.bat)
 
 ## What is TTL?
 
