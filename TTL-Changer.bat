@@ -1,5 +1,5 @@
 @echo off
-title TTL Changer 1.3 - AzimsTech
+title TTL Changer 1.4 - AzimsTech
 color 1f
 
 :: Check if it running as administator. If not, then prompt an administator request
@@ -15,12 +15,22 @@ if not "%1"=="am_admin" (
 	CLS
 	:: Get current TTL value from localhost
 	for /f "tokens=6" %%i in ('ping -n 1 127.0.0.1^|find "TTL"') do set ttl="%%i"
-	set ttl=%ttl:"=%
-	echo.
+
+	:: Change background color to red if TTL=128 else, green.
+	if %ttl% == "TTL=128" ( color 4F ) else ( color A0 )
+
+	
+:::   _____ _____ _        ___ _  _   _   _  _  ___ ___ ___ 
+:::  |_   _|_   _| |  ___ / __| || | /_\ | \| |/ __| __| _ \
+:::    | |   | | | |_|___| (__| __ |/ _ \| .` | (_ | _||   /
+:::    |_|   |_| |____|   \___|_||_/_/ \_\_|\_|\___|___|_|_\
+	:: Display ASCII art
+	for /f "delims=: tokens=*" %%A in ('findstr /b ::: "%~f0"') do @echo(%%A
+                                                        
 
 	:: Display current TTL value
 	echo --------------------------------------------------------------
-	echo Current %ttl%
+	echo  Current %ttl%
 	echo --------------------------------------------------------------
 	echo.
 	echo [1] 60 (bypass)
@@ -44,6 +54,7 @@ if not "%1"=="am_admin" (
 :BYPASS
 	netsh int ipv4 set glob defaultcurhoplimit=60 >NUL
 	netsh int ipv6 set glob defaultcurhoplimit=60 >NUL
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters" /v DisabledComponents /t REG_DWORD /d 32 /f
 	echo Sucess! 
 	timeout 1 >NUL
 	goto MENU
@@ -55,7 +66,3 @@ if not "%1"=="am_admin" (
 	echo Sucess!
 	timeout 1 >NUL
 	goto MENU
-
-
-
-
